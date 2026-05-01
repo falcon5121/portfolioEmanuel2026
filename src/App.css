@@ -1,5 +1,29 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: 'Josefin Sans';
+  src: url('./fonts/JosefinSans.ttf') format('truetype');
+  font-weight: medium, bold, thin;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Inter';
+  src: url('./fonts/Inter.ttf') format('truetype');
+  font-weight: medium, bold, thin;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+  --font-primary: 'Josefin Sans', sans-serif;
+  --font-secondary: "Inter";
+}
+
+.bg-primary-color {
+  background-color: oklch(0.3577 0.021 225.85);
+}
+
 .no-scrollbar::-webkit-scrollbar {
     display: none;
   }
