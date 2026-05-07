@@ -1,9 +1,30 @@
-import { useState, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import { getWorks } from "../../services/works";
+import { getJobs } from "../../services/jobs";
 
 import Cards from "../../Components/Cards";
 
+interface cardsData {
+  id: number,
+  title: string,
+  description: string,
+  img: string,
+}
+
+interface dataJobs {
+  id: number,
+  title: string
+}
+
+
 const Works = () => {
   const data = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+
+  const [jobs, setJobs] = useState([])
+  const [works, setWorks] = useState([])
+
+  getJobs().then(e => setJobs(e))
+  getWorks().then(e => setWorks(e))
 
   const sliderRef = useRef(null);
 
@@ -44,26 +65,16 @@ const Works = () => {
 
   return (
     <>
-      <div className="bg-slate-600 w-full h-screen px-24  py-24">
-        <div className="w-full h-full bg-blue-500 flex justify-between">
+      <div className="bg-first-page w-full h-screen px-24  py-24">
+        <div className="w-full h-full flex justify-between ">
           <div>
-            <h1 className="text-8xl font-bold text-cyan-400 mb-16"> Works</h1>
-            <ul>
-              <li className="duration-300 text-medium text-white text-5xl hover:text-amber-300 cursor-pointer">
-                1
-              </li>
-              <li className="duration-300 text-medium text-white text-5xl hover:text-amber-300 cursor-pointer">
-                2
-              </li>
-              <li className="duration-300 text-medium text-white text-5xl hover:text-amber-300 cursor-pointer">
-                3
-              </li>
-              <li className="duration-300 text-medium text-white text-5xl hover:text-amber-300 cursor-pointer">
-                4
-              </li>
-              <li className="duration-300 text-medium text-white text-5xl hover:text-amber-300 cursor-pointer">
-                5
-              </li>
+            <h1 className="text-8xl font-bold text-highlight mb-16"> Works</h1>
+            <ul className="flex flex-col gap-12 pl-12">
+              {jobs.map((e:dataJobs) => {
+return (<li className="duration-300 text-medium text-white text-5xl hover:text-amber-300 cursor-pointer">
+                {e.title}
+              </li>)
+              })}
             </ul>
           </div>
           <article
@@ -72,12 +83,9 @@ const Works = () => {
             onMouseLeave={handleMouseLeave}
             onMouseUp={handleMouseUp}
             onMouseMove={handleMouseMove}
-            className="unselectable no-scrollbar cursor-grabbing w-6xl h-[48rem] bg-gray-500 rounded-3xl grid grid-flow-col overflow-x-auto no-scrollbar grid-rows-2 gap-x-8 gap-y-2 p-6 basis-5xl"
+            className="unselectable mt-22 bg-carousel-bg no-scrollbar cursor-grabbing w-6xl h-[48rem] rounded-4xl grid grid-flow-col overflow-x-auto no-scrollbar grid-rows-2 gap-x-8 gap-y-2 p-6 basis-5xl"
           >
-            {/* <Cards info={'Paraíbrass Portfólio'}/> */}
-            {data.map((e) => {
-              return <Cards info={e.toString()} />;
-            })}
+            {works.map((e) => {return <Cards props={e} />;})}
           </article>
         </div>
       </div>

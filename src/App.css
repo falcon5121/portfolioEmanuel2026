@@ -16,12 +16,24 @@
 }
 
 @theme {
+  
   --font-primary: 'Josefin Sans', sans-serif;
   --font-secondary: "Inter";
+  --color-highlight: #2bf9f2; /* Cor do texto azul*/
+  --color-bg-hover: #243A43; /* cor do bg da pagina e do hover*/
+  --color-shadow-hover: #9EFFFC;
+  --drop-shadow-backlight: 0 0 8px #9EFFFC40;
+  --color-second-page: #33464E;
+  --color-first-page: #313F45;
+  --color-carousel-bg: #3B535D;
+  --color-card-inside: #3A758B;
+  --color-colored-text: #FFC354;
+
 }
 
-.bg-primary-color {
-  background-color: oklch(0.3577 0.021 225.85);
+
+.text-highlight {
+  color: #2bf9f2;
 }
 
 .no-scrollbar::-webkit-scrollbar {
